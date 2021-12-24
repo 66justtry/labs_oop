@@ -1,35 +1,35 @@
-#include "lab9_v.h"
-#include <iostream>
-#include <string>
-using namespace std;
+#include "Person.h"
 
 Person::Person() {
-	name = "unknown";
-	age = 0;
+	m_name = "";
+	m_age = 0;
 }
-Person::Person(string x) {
-	name = x;
-	age = 0;
+
+Person::Person(string name) {
+	m_name = name;
+	m_age = 0;
 }
-Person::Person(int x) {
-	name = "unknown";
-	age = x;
+Person::Person(int age) {
+	m_name = "";
+	m_age = age;
 }
-string Person::GetName() {
-	return name;
+
+bool Person:: operator()(const Person& age1, const Person& age2) const {
+	return age1.m_age < age2.m_age;
 }
-int Person::GetAge() {
-	return age;
+
+bool operator<(const Person& name1, const Person& name2) {
+	return name1.m_name < name2.m_name;
 }
-void Person::SetName(string s) {
-	name = s;
-}
-void Person::SetAge(int n) {
-	age = n;
-}
-//bool Compare::operator() () {
-//	if ()
-//}
-bool Person::operator()(const Person& obj1, const Person& obj2) const {
-	return obj1.age < obj2.age;
+
+
+
+ostream& operator<<(ostream& out, Person person) {
+	if (person.getAge() == 0) {
+		out << person.getName();
+	}
+	if (person.getName() == "") {
+		out << person.getAge();
+	}
+	return out;
 }

@@ -1,61 +1,62 @@
-#include "lab9_v.h"
-#include <iostream>
-#include <string>
-#include <fstream>
-using namespace std;
+#include "Staff.h"
 
-bool operator< (const Person& obj1, const Person& obj2) {
-	if (obj1.name < obj2.name)
-		return true;
-	else
-		return false;
-}
-bool operator== (const Person& obj1, const string& obj2) {
-	if (obj1.name == obj2)
-		return true;
-	else
-		return false;
-}
+int main()
+{
+	Staff person;
 
-void menu(Staff* list) {
-	system("cls");
-	list->ShowAll();
-	cout << "\n\n";
+	for (;;) {
+		cout << "1. Insert\n";
+		cout << "2. Print\n";
+		cout << "3. Print field \n";
+		cout << "4. Erase\n";
+		cout << "5. Search\n";
+		cout << "6. Exit\n";
+		cout << "Enter a number:\n";
+		int choice;
+		cin >> choice;
+		switch (choice) {
+		case 1: {
+			person.insert();
+			system("pause");
+			system("cls");
 
+			break;
+		}
+		case 2: {
+			person.print();
+			system("pause");
+			system("cls");
 
+			break;
+		}
+		case 3: {
+			person.printField();
+			system("pause");
+			system("cls");
 
+			break;
+		}
+		case 4: {
+			person.print();
+			person.erase();
+			system("pause");
+			system("cls");
 
-
-	system("pause");
-	menu(list);
-}
-
-int main() {
-	Staff* list1 = new Staff;
-	Staff* list2 = new Staff;
-	ifstream in("text.txt");
-	Person* temp1 = new Person;
-	Person* temp2 = new Person;
-	string name;
-	int age;
-	for (int i = 0; i < 3; i++) {
-		in >> name >> age;
-		temp1->SetName(name);
-		temp2->SetAge(age);
-		list1->Insert(*temp1, *temp2);
+			break;
+		}
+		case 5: {
+			person.print();
+			person.search();
+			system("pause");
+			system("cls");
+			break;
+		}
+		case 6: {
+			system("cls");
+			exit(0);
+			break;
+		}
+		}
 	}
-	for (int i = 0; i < 3; i++) {
-		in >> name >> age;
-		temp1->SetName(name);
-		temp2->SetAge(age);
-		list2->Insert(*temp1, *temp2);
-	}
-	in.close();
-	delete temp1;
-	delete temp2;
-	list1->ShowAll();
-
-	delete list1;
-	delete list2;
 	return 0;
 }
